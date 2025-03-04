@@ -1,0 +1,17 @@
+@let movies = loadMovies.value();
+@let isLoading = loadMovies.isLoading();
+
+Etat : {{ loadMovies.status() }}
+
+<div [style]="opacityStyle()">
+  @if(isLoading) {
+    <i>Chargement ...</i>
+    }
+
+  @for (movie of movies; track movie.title) {
+  <div>{{movie.title}}</div>
+  }
+</div>
+
+<button [style]="displayNoneStyle()" [disabled]="isLoading" (click)="reload()">Reload</button>
+<button (click)="fakeSearch()">Fake search</button>
